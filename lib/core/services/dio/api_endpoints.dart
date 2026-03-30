@@ -22,4 +22,11 @@ class ApiEndpoints {
 
   // order
   static const String placeOrder = '/place-order';
+
+  // profile
+  static const String profile = '/profile';
+  static const String updateProfile = '/update-profile';
+
+  // orders
+  static const String orders = '/orders';
 }

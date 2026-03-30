@@ -7,6 +7,10 @@ import 'package:bookia/feature/home/data/models/best_seller_response/product.dar
 import 'package:bookia/feature/home/presentation/cubit/home_cubit.dart';
 import 'package:bookia/feature/home/presentation/page/details_screen.dart';
 import 'package:bookia/feature/main/main_app_screen.dart';
+import 'package:bookia/feature/orders/presentation/cubit/orders_cubit.dart';
+import 'package:bookia/feature/orders/presentation/page/orders_screen.dart';
+import 'package:bookia/feature/profile/presentation/cubit/profile_cubit.dart';
+import 'package:bookia/feature/profile/presentation/page/profile_screen.dart';
 import 'package:bookia/feature/splash/splash_screen.dart';
 import 'package:bookia/feature/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +26,8 @@ class Routes {
   static const String login = '/login';
   static const String register = '/register';
   static const String main = '/main';
+  static const String profile = '/profile';
+  static const String orders = '/orders';
   static const String details = '/details';
   static const String placeOrder = '/PlaceOrderScreen';
 
@@ -54,6 +60,20 @@ class Routes {
       GoRoute(
         path: main,
         builder: (context, state) => MainAppScreen(index: state.extra as int?),
+      ),
+      GoRoute(
+        path: profile,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ProfileCubit(),
+          child: const ProfileScreen(),
+        ),
+      ),
+      GoRoute(
+        path: orders,
+        builder: (context, state) => BlocProvider(
+          create: (context) => OrdersCubit(),
+          child: const OrdersScreen(),
+        ),
       ),
       GoRoute(
         path: details,
