@@ -1,5 +1,7 @@
 import 'package:bookia/core/services/dio/api_endpoints.dart';
+import 'package:bookia/core/services/dio/api_exceptions.dart';
 import 'package:dio/dio.dart';
+import 'dart:developer' as developer;
 
 class DioProvider {
   static late Dio dio;
@@ -8,7 +10,17 @@ class DioProvider {
     dio = Dio(
       BaseOptions(
         baseUrl: ApiEndpoints.baseUrl,
-        connectTimeout: Duration(seconds: 2),
+        connectTimeout: const Duration(seconds: 5),
+        receiveTimeout: const Duration(seconds: 5),
+      ),
+    );
+
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onError: (error, handler) {
+          developer.log('DioError: ${error.message}');
+          throw ApiException.mapDioError(error);
+        },
       ),
     );
   }

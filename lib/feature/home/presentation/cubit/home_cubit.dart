@@ -45,18 +45,10 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoadingState());
     if (checkIfWishlist(productId)) {
       var res = await WishlistRepo.removeToWishlist(productId: productId);
-      if (res != null) {
-        emit(HomeSuccessState(message: 'Removed from wishlist'));
-      } else {
-        emit(HomeErrorState());
-      }
+      emit(HomeSuccessState(message: 'Removed from wishlist'));
     } else {
       var res = await WishlistRepo.addToWishlist(productId: productId);
-      if (res != null) {
-        emit(HomeSuccessState(message: 'Added to wishlist'));
-      } else {
-        emit(HomeErrorState());
-      }
+      emit(HomeSuccessState(message: 'Added to wishlist'));
     }
   }
 
@@ -64,11 +56,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeLoadingState());
 
     var res = await CartRepo.addToCart(productId: productId);
-    if (res != null) {
-      emit(HomeSuccessState(message: 'Added to cart'));
-    } else {
-      emit(HomeErrorState());
-    }
+    emit(HomeSuccessState(message: 'Added to cart'));
   }
 
   bool checkIfWishlist(int productId) {

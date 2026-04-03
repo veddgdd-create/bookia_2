@@ -4,12 +4,6 @@ import 'package:bookia/components/inputs/password_text_field.dart';
 import 'package:bookia/core/routes/naviagtion.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/text_styles.dart';
-import 'package:bookia_app/components/app_bar/app_bar_with_back.dart';
-import 'package:bookia_app/components/buttons/main_button.dart';
-import 'package:bookia_app/components/inputs/password_text_field.dart';
-import 'package:bookia_app/core/routes/naviagtion.dart';
-import 'package:bookia_app/core/routes/routes.dart';
-import 'package:bookia_app/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

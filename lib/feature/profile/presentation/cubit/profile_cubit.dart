@@ -12,12 +12,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> getProfile() async {
     emit(ProfileLoadingState());
     var res = await ProfileRepo.getProfile();
-    if (res != null) {
-      userModel = res;
-      emit(ProfileSuccessState());
-    } else {
-      emit(ProfileErrorState());
-    }
+    userModel = res as UserModel?;
+    emit(ProfileSuccessState());
   }
 
   Future<void> updateProfile({
@@ -33,13 +29,9 @@ class ProfileCubit extends Cubit<ProfileState> {
       phone: phone,
       address: address,
     );
-    if (res != null) {
-      userModel = res;
-      SharedPref.saveUserData(res);
-      emit(ProfileSuccessState());
-    } else {
-      emit(ProfileErrorState());
-    }
+    userModel = res as UserModel?;
+    SharedPref.saveUserData(res as UserModel?);
+    emit(ProfileSuccessState());
   }
 
   void logout() {

@@ -24,11 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
 
     var res = await AuthRepo.register(params);
-    if (res != null) {
-      emit(AuthSuccessState());
-    } else {
-      emit(AuthErrorState(message: 'Registration failed !'));
-    }
+    emit(AuthSuccessState());
   }
 
   login() async {
@@ -40,10 +36,6 @@ class AuthCubit extends Cubit<AuthState> {
     );
 
     var res = await AuthRepo.login(params);
-    if (res != null) {
-      emit(AuthSuccessState());
-    } else {
-      emit(AuthErrorState(message: 'Login failed !'));
-    }
+    emit(AuthSuccessState());
   }
 }

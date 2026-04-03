@@ -1,8 +1,6 @@
-import 'package:bookia/core/constants/app_fonts.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
 import 'package:bookia/components/buttons/main_button.dart';
-import 'package:bookia/feature/orders/data/models/order.dart';
 import 'package:bookia/feature/orders/presentation/cubit/orders_cubit.dart';
 import 'package:bookia/feature/orders/presentation/cubit/orders_state.dart';
 import 'package:flutter/material.dart';

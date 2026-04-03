@@ -11,11 +11,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   Future<void> getOrders() async {
     emit(OrdersLoadingState());
     var res = await OrdersRepo.getOrders();
-    if (res != null) {
-      orders = res;
-      emit(OrdersSuccessState());
-    } else {
-      emit(OrdersErrorState());
-    }
+    orders = res as List<Order>;
+    emit(OrdersSuccessState());
   }
 }
