@@ -1,10 +1,11 @@
 import 'dart:developer' as developer;
-import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz.dart' hide Order;
 import 'package:bookia/core/errors/exceptions.dart';
 import 'package:bookia/core/errors/failures.dart';
 import 'package:bookia/core/services/dio/api_endpoints.dart';
 import 'package:bookia/core/services/dio/dio_provider.dart';
 import 'package:bookia/core/services/local/shared_pref.dart';
+import 'package:bookia/feature/orders/data/models/order.dart';
 
 class OrdersRepo {
   static Future<Either<Failure, List<Order>>> getOrders() async {
@@ -17,7 +18,7 @@ class OrdersRepo {
         headers: headers,
       );
       var body = res.data as List;
-      var orders = body.map((e) => Order.fromjson(e)).toList();
+      var orders = body.map((e) => Order.fromJson(e)).toList();
       return Right(orders);
     } on ServerException catch (e) {
       developer.log('Server error in getOrders: ${e.message}');
