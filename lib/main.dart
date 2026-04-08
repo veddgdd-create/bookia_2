@@ -1,3 +1,4 @@
+import 'package:bookia/core/di/injection_container.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/services/dio/dio_provider.dart';
 import 'package:bookia/core/services/local/shared_pref.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await init(); // DI init
   DioProvider.init();
   await SharedPref.init();
   await EasyLocalization.ensureInitialized();

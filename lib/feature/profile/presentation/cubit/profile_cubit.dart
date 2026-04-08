@@ -1,7 +1,7 @@
 import 'package:bookia/core/services/local/shared_pref.dart';
-import 'package:bookia/feature/auth/data/models/auth_response/data.dart';
 import 'package:bookia/feature/profile/data/repo/profile_repo.dart';
 import 'package:bookia/feature/profile/presentation/cubit/profile_state.dart';
+import 'package:bookia/features/auth/data/models/user_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {

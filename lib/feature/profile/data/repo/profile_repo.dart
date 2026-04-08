@@ -1,12 +1,12 @@
 import 'dart:developer' as developer;
 
+import 'package:bookia/features/auth/data/models/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:bookia/core/errors/exceptions.dart';
 import 'package:bookia/core/errors/failures.dart';
 import 'package:bookia/core/services/dio/api_endpoints.dart';
 import 'package:bookia/core/services/dio/dio_provider.dart';
 import 'package:bookia/core/services/local/shared_pref.dart';
-import 'package:bookia/feature/auth/data/models/auth_response/data.dart';
 
 class ProfileRepo {
   static Future<Either<Failure, UserModel>> getProfile() async {

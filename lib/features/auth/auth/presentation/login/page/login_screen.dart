@@ -7,30 +7,32 @@ import 'package:bookia/core/routes/naviagtion.dart';
 import 'package:bookia/core/routes/routes.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
-import 'package:bookia/feature/auth/presentation/cubit/auth_cubit.dart';
-import 'package:bookia/feature/auth/presentation/cubit/auth_state.dart';
+import 'package:bookia/features/auth/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookia/features/auth/auth/presentation/cubit/auth_state.dart';
+import 'package:bookia/features/auth/auth/presentation/login/widgets/social_login.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWithBack(),
-      body: _buildRegisterBody(context),
+      body: _buildLoginBody(context),
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Already have an account?', style: TextStyles.styleSize14()),
+          Text('Don\'t have an account?', style: TextStyles.styleSize14()),
           TextButton(
             onPressed: () {
-              pushWithReplacement(context, Routes.login);
+              pushWithReplacement(context, Routes.register);
             },
             child: Text(
-              'Sign In',
+              'Sign Up',
               style: TextStyles.styleSize14(color: AppColors.primaryColor),
             ),
           ),
@@ -39,7 +41,7 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildRegisterBody(BuildContext context) {
+  Widget _buildLoginBody(BuildContext context) {
     var cubit = context.read<AuthCubit>();
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
@@ -59,28 +61,14 @@ class RegisterScreen extends StatelessWidget {
             key: cubit.formKey,
             child: Column(
               children: [
-                Text(
-                  'Hello! Register to get started',
-                  style: TextStyles.styleSize30(),
-                ),
+                Text("login_header".tr(), style: TextStyles.styleSize30()),
                 Gap(30),
                 CustomTextField(
-                  controller: cubit.nameController,
-                  hint: 'Enter your name',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Name is required';
-                    }
-                    return null;
-                  },
-                ),
-                Gap(12),
-                CustomTextField(
                   controller: cubit.emailController,
-                  hint: 'Enter your email',
+                  hint: "enter_email".tr(),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Email is required';
+                      return 'Please enter your email';
                     }
                     return null;
                   },
@@ -88,35 +76,40 @@ class RegisterScreen extends StatelessWidget {
                 Gap(12),
                 PasswordTextField(
                   controller: cubit.passwordController,
-                  hint: 'Enter your password',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password is required';
-                    }
-                    return null;
-                  },
-                ),
-                Gap(12),
-                PasswordTextField(
-                  controller: cubit.confirmPasswordController,
-                  hint: 'Confirm your password',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Confirm Password is required';
-                    }
+                  hint: "enter_password".tr(),
 
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
                     return null;
                   },
                 ),
-                Gap(30),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(0),
+                      overlayColor: Colors.transparent,
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "forget_password".tr(),
+                      style: TextStyles.styleSize16(),
+                    ),
+                  ),
+                ),
+                Gap(20),
                 MainButton(
-                  text: 'Register',
+                  text: 'Login',
                   onPressed: () {
                     if (cubit.formKey.currentState!.validate()) {
-                      cubit.register();
+                      cubit.login();
                     }
                   },
                 ),
+                Gap(20),
+                SocialLogin(),
               ],
             ),
           ),

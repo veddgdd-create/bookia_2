@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:bookia/feature/auth/data/models/auth_response/data.dart';
+import 'package:bookia/features/auth/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {

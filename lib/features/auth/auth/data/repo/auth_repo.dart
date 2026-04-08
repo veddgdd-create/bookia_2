@@ -1,12 +1,13 @@
 import 'dart:math' as developer;
+import 'package:bookia/features/auth/auth/data/models/auth_response/auth_response.dart';
+import 'package:bookia/features/auth/data/models/auth_params.dart';
+import 'package:bookia/features/auth/data/models/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:bookia/core/errors/exceptions.dart';
 import 'package:bookia/core/errors/failures.dart';
 import 'package:bookia/core/services/dio/api_endpoints.dart';
 import 'package:bookia/core/services/dio/dio_provider.dart';
 import 'package:bookia/core/services/local/shared_pref.dart';
-import 'package:bookia/feature/auth/data/models/auth_params.dart';
-import 'package:bookia/feature/auth/data/models/auth_response/auth_response.dart';
 
 class AuthRepo {
   static Future<Either<Failure, AuthResponse>> register(
@@ -20,7 +21,7 @@ class AuthRepo {
       if (res.statusCode == 201) {
         var body = res.data;
         var userObj = AuthResponse.fromJson(body);
-        SharedPref.saveUserData(userObj.data);
+        SharedPref.saveUserData(userObj.data as UserModel?);
         return Right(userObj);
       } else {
         return Left(
@@ -51,7 +52,7 @@ class AuthRepo {
       if (res.statusCode == 200) {
         var body = res.data;
         var userObj = AuthResponse.fromJson(body);
-        SharedPref.saveUserData(userObj.data);
+        SharedPref.saveUserData(userObj.data as UserModel?);
         return Right(userObj);
       } else {
         return Left(
