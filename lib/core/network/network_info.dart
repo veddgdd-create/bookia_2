@@ -1,8 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
-import '../error/exceptions.dart';
-
 abstract class NetworkInfo {
   Future<bool> get isConnected;
 }
