@@ -1,4 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
+import '../../../../../core/error/failures.dart';
 import 'user_entity.dart';
 
 part 'auth_response_entity.freezed.dart';
@@ -9,12 +12,4 @@ class AuthResponseEntity with _$AuthResponseEntity {
     required UserEntity data,
     @Default('') String token,
   }) = _AuthResponseEntity;
-
-  @override
-  // TODO: implement data
-  UserEntity get data => throw UnimplementedError();
-
-  @override
-  // TODO: implement token
-  String get token => throw UnimplementedError();
 }

@@ -11,24 +11,4 @@ class UserEntity with _$UserEntity {
     String? phone,
     String? image,
   }) = _UserEntity;
-
-  @override
-  // TODO: implement email
-  String get email => throw UnimplementedError();
-
-  @override
-  // TODO: implement id
-  int get id => throw UnimplementedError();
-
-  @override
-  // TODO: implement image
-  String? get image => throw UnimplementedError();
-
-  @override
-  // TODO: implement name
-  String get name => throw UnimplementedError();
-
-  @override
-  // TODO: implement phone
-  String? get phone => throw UnimplementedError();
 }
